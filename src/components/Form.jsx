@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import Modal from "./modal";
 
 function Form() {
+    const [openModal, setOpenModal] = useState(false);
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [zipCode, setZipCode] = useState("");
@@ -17,9 +19,9 @@ function Form() {
         setZipCode(event.target.value);
     };
 
-    const handleSubmit = (event) => {
+    const handleClick = (event) => {
         event.preventDefault();
-        
+        setOpenModal(true);
         console.log("Prénom:", firstName);
         console.log("Nom:", lastName);
         console.log("Code postal:", zipCode);
@@ -28,7 +30,7 @@ function Form() {
     return (
         <div>
             <h2>Formulaire</h2>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleClick}>
                 <div>
                     <label>Prénom:</label>
                     <input type="text" value={firstName} onChange={handleFirstNameChange} />
@@ -41,7 +43,8 @@ function Form() {
                     <label>Code postal:</label>
                     <input type="text" value={zipCode} onChange={handleZipCodeChange} />
                 </div>
-                <button type="submit">Soumettre</button>
+                <button onClick={handleClick}>Save</button>
+                {openModal && <Modal closeModal={setOpenModal} />}
             </form>
         </div>
     );
