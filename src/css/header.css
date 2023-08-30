@@ -1,0 +1,20 @@
+.header_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #f0f0f0;
+  }
+  
+  .logo {
+    max-width: 100px;
+    height: auto;
+  }
+  
+  .title {
+    font-size: 24px;
+    text-align: center; /* Pour centrer le titre */
+    flex: 1; /* Pour occuper l'espace restant */
+    margin-left: 10px;
+  }
+  
