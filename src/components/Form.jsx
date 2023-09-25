@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Modal from "./modal";
 import { Link } from "react-router-dom";
+import DatePicker from "react-datepicker";
 import { useDispatch } from "react-redux";
 
 function Form() {
@@ -35,11 +36,11 @@ function Form() {
 
     const handleClick = (event) => {
         event.preventDefault();
-        if(validate() === true){
+        if (validate() === true) {
             event.stopPropagation()
             //add data here to employee table
             setOpenModal(true);
-        }else {
+        } else {
             alert("stop")
         }
         console.log("Prénom:", firstName);
@@ -48,7 +49,7 @@ function Form() {
     };
 
     const nameValidation = /^[A-Za-zÀ-ÖØ-öø-ÿ- -]{1,}$/;
-    const numberValidation = /^[0-9]{6}/;
+    const zipCodeValidation = /^[0-9]{2}/;
 
     const dataEmployee = {
         firstName,
@@ -65,7 +66,8 @@ function Form() {
     const validate = () => {
         if (nameValidation.test(firstName.trim()) &&
             nameValidation.test(lastName.trim()) &&
-            state !== ""
+            zipCode !== "" &&
+            dateToday > new Date(birth).getTime()
         ) {
             return true
         }
@@ -101,8 +103,30 @@ function Form() {
                     )}
                 </div>
                 <div>
+                    <label>Date de naissance:</label>
+                    <DatePicker className="input_employee" placeholderText="Date of birth" selected={birth} onChange={(date) => { setBirth(date); }} />
+                    {errors && birth === "" || dateToday < new Date(birth).getTime() ? (
+                        <p className="error_input">Votre date de naissance n'est pas conforme</p>
+                    ) : ""}
+                </div>
+
+                <div>
+                <label>Date de début de contrat:</label>
+                    <DatePicker className="input_employee" placeholderText="Start date" selected={date} onChange={(date) => setStart(date)}
+                    />
+                    {errors && date === "" ? (
+                        <p className="error_input">Il semble y avoir une erreur avec votre date de commençement</p>
+                    ) : ""}
+                </div>
+
+                <div>
                     <label>Code postal:</label>
-                    <input type="text" value={zipCode} onChange={handleZipCodeChange} />
+                    <input type="number" value={zipCode} onChange={handleZipCodeChange} />
+                    {errors && !zipCodeValidation.test(zipCode.trim()) ? (
+                        <p className="error_input">Votre code postal doit contenir doit comporter au minimum 2 chiffres</p>
+                    ) : (
+                        ""
+                    )}
                 </div>
                 <button onClick={handleClick}>Save</button>
                 {openModal && <Modal closeModal={setOpenModal} />}
