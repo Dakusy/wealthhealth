@@ -7,13 +7,13 @@ import './App.css';
 
 function App() {
   return (
-    <Router>
+    <div className='App'>
       <Header />
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/Employees" element={<Employee />} />
       </Routes>
-    </Router>
+      </div>
   );
 }
 
