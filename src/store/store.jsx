@@ -1,10 +1,10 @@
 import React from "react";
 import { configureStore } from "@reduxjs/toolkit";
-var employeReducer;
+import employeeReducer from '../components/createEmployee'
 
 const store = configureStore({
     reducer:{
-        employe: employeReducer
+        employee: employeeReducer
     }
 })
 

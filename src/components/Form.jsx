@@ -7,6 +7,8 @@ import { useDispatch } from "react-redux";
 import { states } from "../data/states";
 import  { departements } from "../data/departements";
 
+import { addEmployee } from "./createEmployee";
+
 import Select from "./select";
 
 
@@ -22,7 +24,6 @@ function Form() {
     const [date, setStart] = useState("");
     const [street, setStreet] = useState("");
     const [city, setCity] = useState("");
-    const [code, setCode] = useState("");
     const [departement, setDepartement] = useState("");
     const [state, setState] = useState("");
     const [errors, setError] = useState(false)
@@ -52,6 +53,7 @@ function Form() {
         event.preventDefault();
         if (validate() === true) {
             event.stopPropagation()
+            dispatch(addEmployee(dataEmployee));
             //add data here to employee table
             setOpenModal(true);
         } else {
@@ -60,6 +62,7 @@ function Form() {
         console.log("Prénom:", firstName);
         console.log("Nom:", lastName);
         console.log("Code postal:", zipCode);
+        console.log("département: ", departement);
     };
 
     const nameValidation = /^[A-Za-zÀ-ÖØ-öø-ÿ- -]{1,}$/;
@@ -72,7 +75,7 @@ function Form() {
         date: JSON.stringify(date),
         street,
         city,
-        code,
+        zipCode,
         departement,
         state,
     };
@@ -84,7 +87,8 @@ function Form() {
             dateToday > new Date(birth).getTime() &&
             street !== "" &&
             city !== "" &&
-            state !== ""
+            state !== "" &&
+            departement !== ""
         ) {
             return true
         }
@@ -175,7 +179,7 @@ function Form() {
                 <label>Departement : </label>
                     <Select name="departement" id="departement" data={departements} Value={handledepartChange}
                     />
-                    {errors && state === "" ? (
+                    {errors && departement === "" ? (
                         <p className="error_input">Veuillez faire un choix parmis la selection</p>
                     ) : ""}
                 </div>

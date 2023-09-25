@@ -3,15 +3,15 @@ import React from "react";
 
 const initialState = {
     employee: [{
-        firstname: "Jessy",
-        lastname:"Cappelle",
+        firstName: "Jessy",
+        lastName:"Cappelle",
         date: '2023-08-08',
         departement:'Sales',
         birth: '1999-09-09',
         street:'Hollywood',
         city: 'Manhatthan',
         state:'New York',
-        code:'20459'
+        zipCode:'20459'
     }
     ]
 }
@@ -26,5 +26,5 @@ const employeeSlice = createSlice({
     }
 })
 
-export const {addEmploye} = employeSlice.actions
-export default employeSlice.reducer
+export const {addEmployee} = employeeSlice.actions
+export default employeeSlice.reducer
