@@ -98,7 +98,7 @@ function Form() {
 
     return (
         <div>
-            <Link to="/Employee">View Current Employees</Link>
+            <Link to="/Employees">View Current Employees</Link>
             <h2>Formulaire</h2>
             <form onSubmit={handleClick}>
                 <div>
