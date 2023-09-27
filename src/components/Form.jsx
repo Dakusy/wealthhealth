@@ -55,15 +55,10 @@ function FormEmployee() {
         if (validate() === true) {
             event.stopPropagation()
             dispatch(addEmployee(dataEmployee));
-            //add data here to employee table
             setOpenModal(true);
         } else {
             alert("stop")
         }
-        console.log("Prénom:", firstName);
-        console.log("Nom:", lastName);
-        console.log("Code postal:", zipCode);
-        console.log("département: ", departement);
     };
 
     const nameValidation = /^[A-Za-zÀ-ÖØ-öø-ÿ- -]{1,}$/;
@@ -109,7 +104,7 @@ function FormEmployee() {
             <form onSubmit={handleClick}>
                 <div className="form_group">
                     <label>First Name : </label>
-                    <input type="text" className="input_form" value={firstName} onChange={handleFirstNameChange} />
+                    <input type="text" className="input_form" placeholder="First Name" value={firstName} onChange={handleFirstNameChange} />
                     {errors && !nameValidation.test(firstName.trim()) ? (
                         <p className="error_input">Votre prenom doit comporter au minimum 1 caractère</p>
                     ) : (
@@ -118,7 +113,7 @@ function FormEmployee() {
                 </div>
                 <div className="form_group">
                     <label>Last Name : </label>
-                    <input type="text" className="input_form" value={lastName} onChange={handleLastNameChange} />
+                    <input type="text" className="input_form" placeholder="Last Name" value={lastName} onChange={handleLastNameChange} />
                     {errors && !nameValidation.test(lastName.trim()) ? (
                         <p className="error_input">Votre nom doit comporter au minimum 1 caractère</p>
                     ) : (
@@ -144,7 +139,7 @@ function FormEmployee() {
 
                 <div className="form_group">
                     <label>Street : </label>
-                    <input type="text" className="input_form" value={street} onChange={(e) => setStreet(e.target.value)} />
+                    <input type="text" className="input_form" placeholder="Street" value={street} onChange={(e) => setStreet(e.target.value)} />
                     {errors && street === "" ? (
                         <p className="error_input">Veuillez renseigner votre adresse correctement</p>
                     ) : ""}
@@ -152,7 +147,7 @@ function FormEmployee() {
 
                 <div className="form_group">
                     <label>City : </label>
-                    <input type="text"  className="input_form" value={city} onChange={(e) => setCity(e.target.value)} />
+                    <input type="text" placeholder="City" className="input_form" value={city} onChange={(e) => setCity(e.target.value)} />
                     {errors && city === "" ? (
                         <p className="error_input">Veuillez renseigner ville correctement</p>
                     ) : ""}
@@ -169,7 +164,7 @@ function FormEmployee() {
 
                 <div className="form_group">
                     <label>Postal Code : </label>
-                    <input type="number" value={zipCode} className="input_form" onChange={handleZipCodeChange} />
+                    <input  type="number" value={zipCode} placeholder="Postal Code" className="input_form" onChange={handleZipCodeChange} />
                     {errors && !zipCodeValidation.test(zipCode.trim()) ? (
                         <p className="error_input">Votre code postal doit contenir doit comporter au minimum 2 chiffres</p>
                     ) : (

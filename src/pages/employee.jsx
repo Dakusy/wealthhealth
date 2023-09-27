@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import Table from "../components/tableEmployee";
+import '../css/Table.css';
 
 
 const Employee = () => {
