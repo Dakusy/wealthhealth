@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 function Table() {
 
-    const test = useSelector((state => state.employee))
+    const TableConfig = useSelector((state => state.employee))
 
     const columns = [{
         name:'First Name',
@@ -54,10 +54,10 @@ function Table() {
     }
 ]
 
-    const [search, setSearch ] = useState(test.employee);
+    const [search, setSearch ] = useState(TableConfig.employee);
 
     const handleFilter = (e) => {
-        const dataFiltered = test.employee.filter(data => {
+        const dataFiltered = TableConfig.employee.filter(data => {
             return (
                 data.firstName.toLowerCase().includes(e.target.value.toLowerCase()) || 
                 data.lastName.toLowerCase().includes(e.target.value.toLowerCase()) || 

@@ -1,5 +1,7 @@
 import React from "react";
 
+import '../css/modal.css';
+
 function Modal({ closeModal }) {
     return (
         <div className={closeModal ? "modal_container" : "modal_display"}>

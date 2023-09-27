@@ -1,5 +1,6 @@
 import React from "react";
 import Form from '../components/form';
+import '../css/home.css';
 
 
 const Homepage = () => {
